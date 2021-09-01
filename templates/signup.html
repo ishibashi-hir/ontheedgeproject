@@ -1,0 +1,28 @@
+
+  <div class="container">
+    <form class="form-signin" method='post'>{% csrf_token %}
+  <h1>On the edge</h1>
+  <h2 class="h3 mb-3 font-weight-normal">アカウント登録してください。</h2>
+  {% if error %}
+  {{ error }}
+  {% endif %}
+  <table>
+    <tr>
+    <th><label for="inputEmail" class="sr-only">Email address</label></th>
+    <td><input type="text" id="inputEmail" class="form-control" placeholder="Email address" name="email_data" required autofocus></td>
+    </tr>
+    <tr>
+    <th><label for="inputPassword" class="sr-only">Password</label></th>
+    <td><input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password_data" required></td>
+    </tr>
+  </table>
+  <div class="checkbox mb-3">
+  </div>
+  <button class="btn btn-lg btn-primary btn-block" type="submit">登録</button>
+  <div>
+  <a href="{% url 'login' %}" >戻る</a>
+</div>
+  <!---p class="mt-5 mb-3 text-muted">&copy; 2017-2019</p--->
+  <p>Air Water Biodesign Inc.</p>
+</form>
+</div>

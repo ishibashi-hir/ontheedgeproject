@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+<!--link rel='stylesheet' type="text/css" href="{% static 'style.css' %}"-->
+{% endblock header %}
+
+{% block content%}
+<form ation='' method="POST">{% csrf_token %}
+    <input type="submit" value='削除します'>
+</form>
+
+{% endblock content %}

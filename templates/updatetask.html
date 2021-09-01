@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+{% endblock header %}
+
+{% block content%}
+{% if user.is_authenticated %}
+<h1>検査処理変更</h1>
+<form action="{% url 'updatetask' pk %}" method='POST'>{% csrf_token %}
+    <table>
+        <tr>
+            <th>製造番号</th>
+            <td>{{ form.lot }}</td>
+        </tr>
+        <tr>
+            <th>処理カテゴリー　※必須</th>
+            <td>{{ form.taskcategory }}</td>
+        </tr>
+        <tr>
+            <th>処理番号 ※必須</th>
+            <td>{{ form.tasknum }}</td>
+        </tr>
+        <tr>
+            <th>入荷日</th>
+            <td><input type="date"{{ form.impdate }}></td>
+        </tr>
+        <tr>
+            <th>商品</th>
+            <td>{{ form.item }}</td>
+        </tr>
+        <tr>
+            <th>商品グレード</th>
+            <td>{{ form.grade }}</td>
+        </tr>
+        <tr>
+            <th>サイズ</th>
+            <td>{{ form.itemsize }}</td>
+        </tr>
+        <tr>
+            <th>処理日</th>
+            <td><input type="date"{{ form.taskdate }}></td>
+        </tr>
+        <tr>
+            <th>備考</th>
+            <td>{{ form.memo }}</td>
+        </tr>
+    </table>
+    <!---p><input type='hidden' name='author' value="{{ user.id }}"></p--->
+    <input type='submit' value='変更する'>
+</form>
+
+<div>
+    <p><a href="{% url 'createinspection' pk %}" class="btn-square">検査追加</a></p>
+
+    <table>
+        <tr>
+            <th>削除</th>
+            <th>詳細</th>
+            <th>検査者</th>
+        </tr>
+        {% for item in inspection %}
+        <tr>
+            <td><a href="{% url 'deleteinspection' item.pk %}" class="btn-brackets">{{ item.id }}</a></td>
+            <td><a href="{% url 'updateinspection' item.pk %}" class="btn-flat-border">{{ item.resultcategory }}</a></td>
+            <td>{{ item.author }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+
+{% else %}
+ログインしてください
+<a href="{% url 'login' %}" class="btn-square" role="button" aria-passed="true">ログイン</a>
+{% endif %}
+
+
+<!-- /#page-content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+{% endblock content %}

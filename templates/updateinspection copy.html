@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+{% endblock header %}
+
+{% block content%}
+{% if user.is_authenticated %}
+<meta http-equiv="refresh" content="1; url={% url 'updateinspection' pk %}">
+
+<h1>検査結果変更</h1>
+<form action="{% url 'updateinspection' pk %}" method='POST'>{% csrf_token %}
+    <table>
+        <tr>
+            <th>処理　※必須</th>
+            <th>格納フォルダ</th>
+        </tr>
+        <tr>
+            <td>{{ form.task }}</td>
+            <td>{{ form.picpath }}</td>
+        </tr>
+    </table>
+    <p><input type='hidden' name='author' value="{{ user.id }}"></p>
+
+
+    <div class="sample-box">
+        <img src="{% static 'img/shot.png' %}">
+        <div class="good">
+            <p><img src="{% static 'img/analyze.png' %}" width=100><input type='submit' value='変更する'></p>
+        </div>
+    </div>
+ 
+    
+</form>
+
+
+
+<div>
+    <p><a href="{% url 'createpicrecord' pk %}" class="btn-square">新規登録</a></p>
+    <table>
+        <tr>
+            <th>削除</th>
+            <th>結果</th>
+        </tr>
+        {% for item in picrecord %}
+        <tr>
+            <td><a href="{% url 'deleteinspection' item.pk %}" class="btn-brackets">{{ item.id }}</a></td>
+            <td>{{ item.resultcategory }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% else %}
+ログインしてください
+<a href="{% url 'login' %}" class="btn-square" role="button" aria-passed="true">ログイン</a>
+{% endif %}
+
+
+<!-- /#page-content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+{% endblock content %}

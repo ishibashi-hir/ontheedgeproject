@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+{% endblock header %}
+
+{% block content%}
+{% if user.is_authenticated %}
+<h1>登録画像変更</h1>
+<form action="{% url 'updatepicrecord' pk %}" method='POST'>{% csrf_token %}
+    <table>
+        <tr>
+            <th>検査結果　※必須</th>
+            <td>{{ form.inspection }}</td>
+        </tr>
+        <tr>
+            <th>左上x座標</th>
+            <th>左上y座標</th>
+            <th>右下x座標</th>
+            <th>右下y座標</th>
+            <td>{{ form.x1 }}</td>
+            <td>{{ form.y1 }}</td>
+            <td>{{ form.x2 }}</td>
+            <td>{{ form.y2 }}</td>
+        </tr>
+        <tr>
+            <th>画像</th>
+            <td>{{ form.image }}</td>
+        </tr>
+    </table>
+    <!---p><input type='hidden' name='author' value="{{ user.id }}"></p--->
+    <input type='submit' value='変更する'>
+</form>
+{% else %}
+ログインしてください
+<a href="{% url 'login' %}" class="btn-square" role="button" aria-passed="true">ログイン</a>
+{% endif %}
+
+
+<!-- /#page-content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+{% endblock content %}

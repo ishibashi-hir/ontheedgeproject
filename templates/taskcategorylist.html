@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+{% endblock header %}
+
+{% block content%}
+<div class="container-fluid">
+    <div>
+        <a href="{% url 'createtaskcategory' %}" class="btn-square">新規登録</a>
+    </div>
+
+    <table>
+        <tr>
+            <th>削除</th>
+            <th>処理カテゴリー</th>
+        </tr>
+        {% for item in object %}
+        <tr>
+            <td><a href="{% url 'deletetaskcategory' item.pk %}" class="btn-brackets">{{ item.id }}</a></td>
+            <td><a href="{% url 'updatetaskcategory' item.pk %}" class="btn-flat-border">{{ item.taskcategory }}</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+<!-- /#page-content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+{% endblock content %}

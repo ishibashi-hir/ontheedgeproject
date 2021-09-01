@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+{% endblock header %}
+
+{% block content%}
+<div class="container-fluid">
+    <table>
+        <tr>
+            <th>削除</th>
+            <th>検査</th>
+            <th>x1</th>
+            <th>y1</th>
+            <th>x2</th>
+            <th>y2</th>
+        </tr>
+        {% for item in object %}
+        <tr>
+            <td><a href="{% url 'deletepicrecord' item.pk %}" class="btn-brackets">{{ item.id }}</a></td>
+            <td><a href="{% url 'updatepicrecord' item.pk %}" class="btn-flat-border">{{ item.inspection }}</a></td>
+            <td>{{ item.x1 }}</td>
+            <td>{{ item.y1 }}</td>
+            <td>{{ item.x2 }}</td>
+            <td>{{ item.y2 }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+<!-- /#page-content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+{% endblock content %}

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+{% endblock header %}
+
+{% block content%}
+{% if user.is_authenticated %}
+<h1>検査フライパン追加</h1>
+
+
+
+<form action='' method='POST' enctype="mutipart/form-data">{% csrf_token %}
+    <table>
+        <tr>
+            <th>処理　※必須</th>
+            <th>画像フォルダ</th>
+        </tr>
+        <tr>
+            <td>{{ form.task }}</td>
+            <td>{{ form.picpath }}</td>
+        </tr>
+    </table>
+    <p><input type='hidden' name='author' value="{{ user.id }}"></p>
+    <input type='submit' value='登録する'>
+
+
+    <!---div class="sample-box">
+        <img src="{% static 'img/shot.png' %}">
+        <div class="good">
+            <p><img src="{% static 'img/go.png' %}" width=100><input type='submit' value='変更する'></p>
+        </div>
+    </div--->    
+
+
+</form>
+</div>
+{% else %}
+ログインしてください
+<a href="{% url 'login' %}" class="btn-square" role="button" aria-passed="true">ログイン</a>
+{% endif %}
+
+<!-- /#page-content-wrapper -->
+
+
+<!-- /#wrapper -->
+{% endblock content %}

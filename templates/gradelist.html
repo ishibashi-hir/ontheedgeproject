@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+{% endblock header %}
+
+{% block content%}
+<div class="container-fluid">
+    <div>
+        <a href="{% url 'creategrade' %}" class="btn-square">新規登録</a>
+    </div>
+
+    <table>
+        <tr>
+            <th>削除</th>
+            <th>グレード名</th>
+        </tr>
+        {% for it in object %}
+        <tr>
+            <td><a href="{% url 'deletegrade' it.pk %}" class="btn-brackets">{{ it.id }}</a></td>
+            <td><a href="{% url 'updategrade' it.pk %}" class="btn-flat-border">{{ it.gradename }}</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+<!-- /#page-content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+{% endblock content %}

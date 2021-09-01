@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+{% endblock header %}
+
+{% block content%}
+<div class="container-fluid">
+    <table>
+        <tr>
+            <th>削除</th>
+            <th>処理</th>
+            <th>結果</th>
+        </tr>
+        {% for item in object %}
+        <tr>
+            <td><a href="{% url 'deleteinspection' item.pk %}" class="btn-brackets">{{ item.id }}</a></td>
+            <td><a href="{% url 'updateinspection' item.pk %}" class="btn-flat-border">{{ item.task }}</a></td>
+            <td>{{ item.resultcategory }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+<!-- /#page-content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+{% endblock content %}

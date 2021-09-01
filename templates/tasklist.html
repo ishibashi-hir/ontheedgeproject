@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+{% endblock header %}
+
+{% block content%}
+<div class="container-fluid">
+    <div>
+        <a href="{% url 'createtask' %}" class="btn-square">新規登録</a>
+        <a href="{% url 'failreport' %}" class="btn-square">異常枚数報告</a>
+    </div>
+
+    <table>
+        <tr>
+            <th>削除</th>
+            <th>製造番号</th>
+            <th>処理カテゴリー</th>
+            <th>処理番号</th>
+            <th>入荷日</th>
+            <th>商品</th>
+            <th>サイズ</th>
+            <th>処理日</th>
+        </tr>
+        {% for it in object %}
+        <tr>
+            <td><a href="{% url 'deletetask' it.pk %}" class="btn-brackets">{{ it.id }}</a></td>
+            <td><a href="{% url 'updatetask' it.pk %}" class="btn-flat-border">{{ it.lot }}</a></td>
+            <td>{{ it.taskcategory }}</a></td>
+            <td>{{ it.tasknum }}</td>
+            <td>{{ it.impdate }}</td>
+            <td>{{ it.item }}</td>
+            <td>{{ it.itemsize }}</td>
+            <td>{{ it.taskdate }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+<!-- /#page-content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+{% endblock content %}

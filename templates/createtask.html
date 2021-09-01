@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+{% endblock header %}
+
+{% block content%}
+
+{% if user.is_authenticated %}
+<h1>検査処理登録</h1>
+<form action='' method='POST' enctype="mutipart/form-data">{% csrf_token %}
+    <table>
+        <tr>
+            <th>製造番号</th>
+            <td>{{ form.lot }}</td>
+        </tr>
+        <tr>
+            <th>処理カテゴリー　※必須</th>
+            <td>{{ form.taskcategory }}</td>
+        </tr>
+        <tr>
+            <th>処理番号 ※必須</th>
+            <td>{{ form.tasknum }}</td>
+        </tr>
+        <tr>
+            <th>入荷日</th>
+            <td><input type="date"{{ form.impdate }}></td>
+        </tr>
+        <tr>
+            <th>商品</th>
+            <td>{{ form.item }}</td>
+        </tr>
+        <tr>
+            <th>商品グレード</th>
+            <td>{{ form.grade }}</td>
+        </tr>
+        <tr>
+            <th>サイズ</th>
+            <td>{{ form.itemsize }}</td>
+        </tr>
+        <tr>
+            <th>処理日</th>
+            <td><input type="date"{{ form.taskdate }}></td>
+        </tr>
+        <tr>
+            <th>備考</th>
+            <td>{{ form.memo }}</td>
+        </tr>
+    </table>
+    <!---p><input type='hidden' name='author' value="{{ user.id }}"></p--->
+    <input type='submit' value='登録する'>
+</form>
+{% else %}
+ログインしてください
+<a href="{% url 'login' %}" class="btn-square" role="button" aria-passed="true">ログイン</a>
+{% endif %}
+
+<!-- /#page-content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+{% endblock content %}

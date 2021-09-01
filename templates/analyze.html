@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+<meta http-equiv="Cache-Control" content="no-cache">
+{% endblock header %}
+
+{% block content%}
+{% if user.is_authenticated %}
+<!---meta http-equiv="refresh" content="0.5; url={% url 'analyze' pk %}"--->
+<img src="{% static 'img/analyze.png' %}">
+
+{% else %}
+ログインしてください
+<a href="{% url 'login' %}" class="btn-square" role="button" aria-passed="true">ログイン</a>
+{% endif %}
+
+
+<!-- /#page-content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+{% endblock content %}

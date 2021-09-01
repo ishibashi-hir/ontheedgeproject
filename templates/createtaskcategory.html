@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+{% endblock header %}
+
+{% block content%}
+
+{% if user.is_authenticated %}
+<h1>処理カテゴリー登録</h1>
+<form action='' method='POST' enctype="mutipart/form-data">{% csrf_token %}
+    <table>
+        <tr>
+            <th>処理内容　※必須</th>
+        </tr>
+        <tr>
+            <td>{{ form.taskcategory }}</td>
+        </tr>
+    </table>
+    <!---p><input type='hidden' name='author' value="{{ user.id }}"></p--->
+    <input type='submit' value='登録する'>
+</form>
+{% else %}
+ログインしてください
+<a href="{% url 'login' %}" class="btn-square" role="button" aria-passed="true">ログイン</a>
+{% endif %}
+
+<!-- /#page-content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+{% endblock content %}
